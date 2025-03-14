@@ -2,6 +2,7 @@
     <head>
         <title>Ultimate Cat Maximiser Pro 2000</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="tasks.js"></script>
         <script src="gameplay.js"></script>
     </head>
 
@@ -26,17 +27,27 @@
                 <tr id="scaredRow" style="visibility: hidden;">
                     <td>Mice scared:</td><td id="scaredCount">0</td>
                 </tr>
+
             </table>
             <table id="affection" style="visibility: hidden;">
                 <tr>
                     <td>Affection:</td><td id="affectionCount">0</td>
                 </tr>
+                <tr id="windowPaws" style="visibility: hidden;">
+                    <td>Window paws:</td><td id="windowPawsCount">0</td>
+                </tr>
+                <tr id="dogAffection" style="visibility: hidden;">
+                    <td>Dog affection:</td><td id="dogAffectionCount">0</td>
+                </tr>
             </table>
 
-            <button id="feed" onclick="eatMouse()">Eat mouse</button>
+            <button id="feed" onclick="eatMouse()">Eat mouse</button><br>
+            <button id="purr" style="visibility: hidden;" onclick="purr()">Purr (+1 affection)</button><br>
+            <button id="shitFloor" style="visibility: hidden;" onclick="shitFloor()">Shit on floor (-10 affection)</button><br>
         </div>
 
         <div class="column">
+            <button id="swapDreamiesWindowPaws" onclick="swapDreamiesWindowPaws()" style="visibility:hidden">50 Dreamies -> 1 window paw</button>
             <div id="projects">
             </div>
         </div>

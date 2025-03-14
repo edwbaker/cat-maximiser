@@ -15,8 +15,11 @@ let gamestate = {
     farms: 0,
 
     farmerAffection: 0,
+    farmerAffectionDog: 100,
 
-    dreamies: 0
+    dreamies: 0,
+
+    windowPaws: 0
 };
 
 let tasksCompleted = [];
@@ -51,7 +54,7 @@ function gameloop() {
     }
 
     if (gamestate.dreamies > 0) {
-        document.getElementById("dreamieCount").innerHTML = gamestate.dreamies + " Dreamies rewarded";
+        document.getElementById("dreamieCount").innerHTML = gamestate.dreamies + " Dreamies available";
     }
 
     if (gamestate.miceScared > 0 && gamestate.catFood == "mice") {
@@ -63,9 +66,14 @@ function gameloop() {
     }
 
     if (gamestate.farmerAffection > 0) {
-        document.getElementById("affectionCount").innerHTML = gamestate.farmerAffection;
         document.getElementById("affection").style.visibility = "visible";
     }
+
+    document.getElementById("affectionCount").innerHTML = gamestate.farmerAffection;
+
+    document.getElementById("windowPawsCount").innerHTML = gamestate.windowPaws;
+
+    document.getElementById("dogAffectionCount").innerHTML = gamestate.farmerAffectionDog;
 
     document.getElementById("projects").innerHTML = "";
     availableTasks();
@@ -193,6 +201,45 @@ function availableTasks() {
             action: "dreamies75()"
         })
     }
+
+    if (tasksCompleted.includes("dreamies75") && !tasksCompleted.includes("gettingIn")) {
+        renderTask({
+            name: "Getting in",
+            desc: "Swap Dreamies for pawing at the window.",
+            avail: true,
+            action: "gettingIn()"
+        })
+    }
+
+    if (tasksCompleted.includes("gettingIn") && !tasksCompleted.includes("gettingIn2")) {
+        renderTask({
+            name: "Securing free entry",
+            desc: "Make the farmer install a cat flap.",
+            avail: (gamestate.windowPaws >= 5) ? true : false,
+            locked: "Need 5 window pawings",
+            action: "gettingIn2()"
+        })
+    }
+
+    if (tasksCompleted.includes("gettingIn2") && !tasksCompleted.includes("beatDog")) {
+        renderTask({
+            name: "Unwanted housemates",
+            desc: "Become the favourite pet.",
+            locked: "Have more affection than the dog",
+            avail: (gamestate.farmerAffection > gamestate.farmerAffectionDog) ? true : false,
+            action: "gameComplete()"
+        })
+    }
+
+    if (tasksCompleted.includes("gettingIn2") && !tasksCompleted.includes("betrayDog") && gamestate.farmerAffection > 20) {
+        renderTask({
+            name: "Betray the dog",
+            desc: "Covertly hide a dog shit under the sofa. Dog loses 50 affection.",
+            avail: (gamestate.dreamies >= 20) ? true : false,
+            action: "betrayDog()",
+            locked: "20 Dreamies"
+        })
+    }
 }
 
 function addFarm() {
@@ -204,46 +251,25 @@ function addFarm() {
     gameloop();
 }
 
-function task_1() {
-    gamestate.cats += 4;
-    tasksCompleted.push("task_1");
-    gameloop();
+function swapDreamiesWindowPaws() {
+    if (gamestate.dreamies >= 50) {
+        gamestate.dreamies -= 50;
+        gamestate.windowPaws += 1;
+        gameloop();
+    }
 }
 
-function task_2() {
-    gamestate.catsAppetite = 20;
-    tasksCompleted.push("task_2");
-    gameloop();
-}
-
-function addDreamie(count=1) {
-    gamestate.dreamies += count;
-    document.getElementById("dreamieCount").style.visibility = "visible";
-}
-
-function firstDreamie() {
-    addDreamie(gamestate.cats);
-    tasksCompleted.push("firstDreamie");
-    gameloop();
-}
-
-function catsScarier() {
-    gamestate.catsScariness = 1000;
-    gamestate.mouseReducer = true;
-    tasksCompleted.push("halloween");
-    document.getElementById("scaredRow").style.visibility = "visible";
-    gameloop();
-}
-
-function feastOnDreamies() {
-    gamestate.catFood = "dreamies";
-    tasksCompleted.push("dreamies");
-    document.getElementById("feed").innerHTML = "Get Dreamie";
-    gameloop();
-}
-
-function dreamies75() {
-    tasksCompleted.push("dreamies75");
+function purr() {
     gamestate.farmerAffection += 1;
     gameloop();
+}
+
+function shitFloor() {
+    gamestate.farmerAffection -= 10;
+    gameloop();
+}
+
+function gameComplete() {
+    //redirect to index2.html
+    window.location.href = "index2.html";
 }
