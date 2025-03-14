@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Ultimate Cat Maximiser Pro 2000</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="gameplay.js"></script>
+    </head>
+
+    <body>
+        <h1 id="dreamieCount" stle="visibility:hidden"></h1>
+        <div class ="column">
+            <table>
+                <tr>
+                    <td>Cats:</td><td id="catCount">0</td>
+                </tr>
+                <tr>
+                    <td>Mice:</td><td id="mouseCount">0</td>
+                </tr>
+                <tr id="farmRow" style="visibility: hidden;">
+                    <td>Farms:</td><td id="farmCount">0</td>
+                </tr>
+            </table>
+            <table id="consumedCounts" style="visibility: hidden;">
+                <tr>
+                    <td>Mice eaten:</td><td id="miceEaten">0</td>
+                </tr>
+                <tr id="scaredRow" style="visibility: hidden;">
+                    <td>Mice scared:</td><td id="scaredCount">0</td>
+                </tr>
+            </table>
+            <table id="affection" style="visibility: hidden;">
+                <tr>
+                    <td>Affection:</td><td id="affectionCount">0</td>
+                </tr>
+            </table>
+
+            <button id="feed" onclick="eatMouse()">Eat mouse</button>
+        </div>
+
+        <div class="column">
+            <div id="projects">
+            </div>
+        </div>
+    </body>
+</html>

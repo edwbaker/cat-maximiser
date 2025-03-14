@@ -1,0 +1,18 @@
+.column {
+    width:30%;
+    float:left;
+}
+
+.project {
+    background-color: grey;
+    color: darkgrey;
+    margin:2px;
+    border-color: black;
+    border-width: 1px;
+    padding:2px;
+}
+
+.project-active {
+    cursor: pointer;
+    color: black;
+}
