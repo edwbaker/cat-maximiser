@@ -107,3 +107,13 @@ function betrayDog() {
     tasksCompleted.push("betrayDog");
     gameloop();
 }
+
+function beatDog() {
+    document.getElementById("hideDogShit").style.visibility = "visible";
+    tasksCompleted.push("beatDog");
+    gameloop();
+}
+
+function evictDog() {
+    gameComplete();
+}

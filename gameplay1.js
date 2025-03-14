@@ -228,17 +228,27 @@ function availableTasks() {
             desc: "Become the favourite pet.",
             locked: "Have more affection than the dog",
             avail: (gamestate.farmerAffection > gamestate.farmerAffectionDog) ? true : false,
-            action: "gameComplete()"
+            action: "beatDog()"
         })
     }
 
-    if (tasksCompleted.includes("gettingIn2") && !tasksCompleted.includes("betrayDog") && gamestate.farmerAffection > 20) {
+    if (!tasksCompleted.includes("betrayDog") && gamestate.farmerAffection > 20) {
         renderTask({
             name: "Betray the dog",
             desc: "Covertly hide a dog shit under the sofa. Dog loses 50 affection.",
             avail: (gamestate.dreamies >= 20) ? true : false,
             action: "betrayDog()",
             locked: "20 Dreamies"
+        })
+    }
+
+    if (tasksCompleted.includes("beatDog") && !tasksCompleted.includes("evictDog")) {
+        renderTask({
+            name: "Evict the dog",
+            desc: "Make the farmer move the dog outside so the cats are more secure",
+            locked: "Dog -100 affection. Cat +50 affection",
+            action: "evictDog()",
+            avail: (gamestate.farmerAffection >=50 && gamestate.farmerAffectionDog <=-100) ? true : false
         })
     }
 }
@@ -267,6 +277,12 @@ function purr() {
 
 function shitFloor() {
     gamestate.farmerAffection -= 10;
+    gameloop();
+}
+
+function hideDogShit() {
+    gamestate.farmerAffectionDog -= 50;
+    gamestate.dreamies -= 20;
     gameloop();
 }
 
