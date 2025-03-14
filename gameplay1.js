@@ -272,5 +272,5 @@ function shitFloor() {
 
 function gameComplete() {
     //redirect to index2.html
-    window.location.href = "index2.html";
+    window.location.href = "chapter2.html";
 }
