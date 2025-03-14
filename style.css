@@ -16,3 +16,27 @@
     cursor: pointer;
     color: black;
 }
+
+#iterator {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    background-color: grey;
+}
+
+#intro, #reveal {
+    text-align: center;
+    font-style: italic;
+    font-size: 65pt;
+}
+
+#startgame {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 45pt;
+    padding: 20px;
+    visibility: hidden;
+}

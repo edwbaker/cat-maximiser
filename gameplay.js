@@ -42,6 +42,7 @@ function gameloop() {
     updateMice();
     updateCats();
 
+    document.getElementById("iteration").innerHTML = gametime;
     document.getElementById("mouseCount").innerHTML = gamestate.mice;
     document.getElementById("catCount").innerHTML = gamestate.cats;
     document.getElementById("farmCount").innerHTML = gamestate.farms;
